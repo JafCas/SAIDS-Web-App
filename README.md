@@ -1,6 +1,6 @@
 # SAIDS-Web-App
----
 This will be the web app I will use at my Final Project to get my bachelors degree.
+---
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
