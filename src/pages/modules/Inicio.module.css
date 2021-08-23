@@ -1,0 +1,23 @@
+.header {
+    flex-direction: row;
+    align-items: center;
+    /*background-color: blue;*/
+}
+
+.description {
+
+}
+
+.image {
+    width: 100%;
+    height: 100%;
+    /*background-color: red;*/
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+
+.image img {
+    /*width: 100%;*/
+    height: 25rem;
+    object-fit: cover;
+}

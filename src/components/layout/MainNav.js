@@ -1,11 +1,12 @@
 import { Link } from "react-router-dom";
+import img1 from "../../images/Logo.png";
 
 import classes from "./modules/MainNav.module.css";
 
 function MainNav() {
   return (
     <header className={classes.header}>
-      <div className={classes.logo}>SAIDS</div>
+      <div className={classes.logo}><img src={img1} alt=""/>SAIDS</div>
       <nav>
         <ul>
           <li>

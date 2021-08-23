@@ -9,9 +9,14 @@
 }
 
 .logo {
-  font-size: 3.5rem;
+  font-size: 4rem;
   color: #84c1e0;
   font-weight: bold;
+  flex-direction: row;
+}
+
+.logo img {
+  height: 3.5rem;
 }
 
 .header ul {
