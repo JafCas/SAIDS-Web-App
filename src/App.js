@@ -10,6 +10,7 @@ import Registro from "./pages/Registro";
 import Reportes from "./pages/Reportes";
 
 import { useAuth0 } from "@auth0/auth0-react";
+//import { Button } from "./components/layout/buttons/Button";
 //import User from "./pages/User";
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
           <Reportes />
         </Route>
         <Route path="/user">
-          {isAuthenticated ? <Profile /> : <LoginButton />}
+          {isAuthenticated ? (<Profile />) : <LoginButton />}
         </Route>
         <Route path="/login">
           <LoginButton />

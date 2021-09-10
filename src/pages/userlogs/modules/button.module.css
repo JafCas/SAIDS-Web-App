@@ -28,6 +28,12 @@
   outline: 0;
   text-transform: capitalize;
   background-color: #fae0ce;
-  color: #5dacd3;
+  color: rgb(53, 53, 53);
   font-weight: bold;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+  /*transform: translateY(-3px);*/
+  background-color: #f0d2bc;
 }

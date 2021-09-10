@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 import "./index.css";
+//import { Button } from "./components/layout/buttons/Button";
 import App from "./App";
 
 const domain = process.env.REACT_APP_AUTH0_DOMAIN;

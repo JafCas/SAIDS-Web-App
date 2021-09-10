@@ -1,0 +1,23 @@
+:root {
+  --primary: #4628ff;
+  --white: white;
+}
+
+.btn {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+}
+
+/*Button colors*/
+
+.btn--primary--solid {
+    background-color: var(--primary);
+    color: var(--white);
+}
