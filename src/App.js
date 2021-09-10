@@ -3,14 +3,18 @@ import Layout from "./components/layout/Layout";
 
 import Inicio from "./pages/Inicio";
 //import Login from "./pages/Login";
-import LoginButton from "./pages/Login";
-import LogoutButton from "./pages/Logout";
-import Profile from "./pages/Profile";
+import LoginButton from "./pages/userlogs/Login";
+import LogoutButton from "./pages/userlogs/Logout";
+import Profile from "./pages/userlogs/Profile";
 import Registro from "./pages/Registro";
 import Reportes from "./pages/Reportes";
+
+import { useAuth0 } from "@auth0/auth0-react";
 //import User from "./pages/User";
 
 function App() {
+  const { isAuthenticated } = useAuth0();
+
   return (
     <Layout>
       <Switch>
@@ -21,8 +25,7 @@ function App() {
           <Reportes />
         </Route>
         <Route path="/user">
-          {/*<User />*/}
-          <Profile />
+          {isAuthenticated ? <Profile /> : <LoginButton />}
         </Route>
         <Route path="/login">
           <LoginButton />

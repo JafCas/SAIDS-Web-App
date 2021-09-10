@@ -1,0 +1,33 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*background-color: white;*/
+}
+
+.btn {
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 2;
+  height: 50px;
+  transition: all 200ms linear;
+  border-radius: 4px;
+  width: 240px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  /*box-shadow: 0 12px 35px 0 rgba(53, 165, 180, 0.25);*/
+  outline: 0;
+  text-transform: capitalize;
+  background-color: #fae0ce;
+  color: #5dacd3;
+  font-weight: bold;
+}
