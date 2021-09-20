@@ -11,6 +11,7 @@ class RecordList extends Component {
   async getNotes() {
     const res = await axios.get("http://localhost:4000/api/Records");
     this.setState({ notes: res.data });
+    //console.log(res.data);
   }
 
   async componentDidMount() {
