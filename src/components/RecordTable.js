@@ -8,17 +8,6 @@ class RecordTable extends Component {
     notes: [],
   };
 
-  /*state = {
-    title: "",
-    content: "",
-    date: new Date(),
-    userSelected: "",
-    users: [],
-    editing: false,
-    _id: "",
-    notes: [],
-  };*/
-
   async getRecords() {
     const res = await axios.get("http://localhost:4000/api/Records");
     this.setState({ notes: res.data });
@@ -67,6 +56,7 @@ class RecordTable extends Component {
           columns={this.columnas}
           data={this.state.notes}
           title="Reportes almacenados"
+          defaultSortFieldId={3}
           pagination
           paginationComponentOptions={this.pagOptions}
           fixedHeader //Hacer fijo el encabezado
