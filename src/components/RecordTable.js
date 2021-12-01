@@ -1,16 +1,30 @@
 import React, { Component } from "react";
 import DataTable from "react-data-table-component";
+import { Link } from "@mui/material";
 import axios from "axios";
-import { format } from "timeago.js";
+import DownloadIcon from "@mui/icons-material/Download";
+//import { format } from "timeago.js";
+
+//import { useTable } from "react-table";
+
+// const URLFile = row => <a href={row.ansiedadFileLink} />
+
+const URLFile = (row) => (
+  <Link href={row.ansiedadFileLink} color="#84c1e0" >
+    {/*<DownloadIcon>{row.ansiedadFileLink}</DownloadIcon>*/}
+    <DownloadIcon/>
+  </Link>
+);
 
 class RecordTable extends Component {
   state = {
-    notes: [],
+    participantes: [],
   };
 
   async getRecords() {
-    const res = await axios.get("http://localhost:4000/api/Records");
-    this.setState({ notes: res.data });
+    // const res = await axios.get("http://localhost:4000/api/Records");
+    const res = await axios.get("http://localhost:4000/api/participantes");
+    this.setState({ participantes: res.data });
     console.log(res.data);
   }
 
@@ -18,33 +32,52 @@ class RecordTable extends Component {
     this.getRecords();
   }
 
-  pagOptions ={
+  pagOptions = {
     rowsPerPageText: "Filas por pagina",
     rangeSeparatorText: "de",
     selectAllRowsItem: true,
     selectAllRowsItemText: "Todos",
-  }
+  };
+
+  //const URLFile = row => <a href={() => false}>{row.ansiedadFileLink}</a>
 
   columnas = [
     {
-      name: "Titulo", //Texto de la columna
-      selector: row => row.title, //Identificador de la columna
+      name: "Nombre del Participante", //Texto de la columna
+      selector: (row) =>
+        `${row.apellidoParticipante} ${row.nombresParticipante}`, //Identificador de la columna
       sortable: true, //Ordenable?
     },
+    // {
+    //   name: "Número de WhatsApp: ", //Texto de la columna
+    //   selector: row => row.WaNumber, //Identificador de la columna
+    //   sortable: true, //Ordenable?
+    //   //grow: '2',
+    // },
     {
-      name: "Nombre", //Texto de la columna
-      selector: row => row.author, //Identificador de la columna
+      name: "Fecha de Aplicación", //Texto de la columna
+      // selector: row => format(row.updatedAt), //Identificador de la columna
+      selector: (row) => row.fechaParticipacionOnly, //Identificador de la columna
+      sortable: true, //Ordenable?,
+      //alignment: "center",
+    },
+    {
+      name: "Puntuación C. de Ansiedad: ", //Texto de la columna
+      selector: (row) => row.puntuacionTotalBAI, //Identificador de la columna
       sortable: true, //Ordenable?
       //grow: '2',
     },
     {
-      name: "Fecha", //Texto de la columna
-      selector: row => format(row.date), //Identificador de la columna
+      name: "Puntuación C. de Depresión: ", //Texto de la columna
+      selector: (row) => row.puntuacionTotalPHQ, //Identificador de la columna
       sortable: true, //Ordenable?
+      //grow: '2',
     },
     {
-      name: "Contenido", //Texto de la columna
-      selector: row => row.content, //Identificador de la columna
+      name: "Reporte de Análisis", //Texto de la columna
+      // selector: row => row.ansiedadFileLink, //Identificador de la columna
+      // cell: row => <a href = {row.ansiedadFileLink}/>,
+      cell: (row) => <URLFile {...row} />,
       sortable: true, //Ordenable?
     },
   ];
@@ -54,13 +87,13 @@ class RecordTable extends Component {
       <div className="table-responsive">
         <DataTable
           columns={this.columnas}
-          data={this.state.notes}
+          data={this.state.participantes}
           title="Reportes almacenados"
-          defaultSortFieldId={3}
+          defaultSortFieldId={1}
           pagination
           paginationComponentOptions={this.pagOptions}
           fixedHeader //Hacer fijo el encabezado
-          fixedHeaderScrollHeight= "600px"
+          fixedHeaderScrollHeight="600px"
         />
       </div>
     );
