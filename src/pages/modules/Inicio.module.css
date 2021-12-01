@@ -1,11 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+.inicio { 
+    align-content: center;
+}
+
 .header {
-    flex-direction: row;
+    display: flex;
+    /*flex-direction: row;*/
     align-items: center;
     /*background-color: blue;*/
+    justify-content: space-around;
 }
 
 .description {
-
+    /*background-color: white;*/
+    padding-left: 200px;
+    padding-right: 200px;
+    font-size: 3rem;
+    color: rgb(36, 32, 32);
+    font-weight: bold;
+    font-family: 'Open Sans', 'sans-serif';
+    text-align:end;
 }
 
 .image {

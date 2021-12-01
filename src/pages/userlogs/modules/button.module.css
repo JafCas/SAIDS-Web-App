@@ -1,0 +1,42 @@
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /*background-color: white;*/
+}
+
+.btn {
+  font-family: "Ubuntu", sans-serif;
+  position: relative;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 2;
+  height: 50px;
+  transition: all 200ms linear;
+  border-radius: 4px;
+  width: 240px;
+  letter-spacing: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  align-self: center;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 12px 35px 0 rgba(255, 227, 207, 0.25);
+  outline: 0;
+  text-transform: capitalize;
+  background-color: #84c1e0;
+  /*color: rgb(53, 53, 53);*/
+  font-weight: bold;
+  transition: transform 0.3s ease;
+  color: #fff;
+  border-radius: 2rem;
+  border-color: black;
+}
+
+.btn:hover {
+  /*transform: translateY(-3px);*/
+  background-color: #a3d0e6;
+}

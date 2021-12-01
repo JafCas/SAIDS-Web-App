@@ -15,6 +15,13 @@
   flex-direction: row;
 }
 
+#SAIDS { 
+  font-size: 4rem;
+  color: #84c1e0;
+  font-weight: bold;
+  flex-direction: row;
+}
+
 .logo img {
   height: 3.5rem;
 }
@@ -24,7 +31,7 @@
   margin: 0;
   padding: 0;
   display: flex;
-  align-items: baseline;
+  align-items: center;
 }
 
 .header li {
@@ -32,7 +39,8 @@
 }
 
 .icono {
-  color: black;
+  width: 100%;
+  height: 3rem;
 }
 
 .header a {
