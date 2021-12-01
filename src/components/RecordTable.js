@@ -1,8 +1,12 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import DataTable from "react-data-table-component";
 import { Link } from "@mui/material";
 import axios from "axios";
 import DownloadIcon from "@mui/icons-material/Download";
+import CheckIcon from "@mui/icons-material/Check";
+import ToggleButton from "@mui/material/ToggleButton";
+//import Button from "@mui/material/Button";
+import ClearIcon from "@mui/icons-material/Clear";
 //import { format } from "timeago.js";
 
 //import { useTable } from "react-table";
@@ -10,19 +14,46 @@ import DownloadIcon from "@mui/icons-material/Download";
 // const URLFile = row => <a href={row.ansiedadFileLink} />
 
 const URLFile = (row) => (
-  <Link href={row.ansiedadFileLink} color="#84c1e0" >
+  <Link href={row.ansiedadFileLink} color="#84c1e0">
     {/*<DownloadIcon>{row.ansiedadFileLink}</DownloadIcon>*/}
-    <DownloadIcon/>
+    <DownloadIcon />
   </Link>
 );
+
+const StandaloneToggleButton = (row) => {
+  const [selected, setSelected] = useState(!row.checadoPorEspecialista);
+  console.log("inicial", selected);
+
+  return (
+    <ToggleButton
+      value="check"
+      selected={!selected}
+      onChange={async () => {
+        setSelected(!selected);
+        console.log("apretao", selected);
+        const updateChecado = {
+          checadoPorEspecialista: selected,
+        };
+        await axios.put(
+          "http://localhost:4000/api/participantes/" + row._id,
+          updateChecado
+        );
+        
+        console.log("subido", selected);
+      }}
+    >
+      {selected === false ? <CheckIcon /> : <ClearIcon />}
+    </ToggleButton>
+  );
+};
 
 class RecordTable extends Component {
   state = {
     participantes: [],
+    _id: "",
   };
 
   async getRecords() {
-    // const res = await axios.get("http://localhost:4000/api/Records");
     const res = await axios.get("http://localhost:4000/api/participantes");
     this.setState({ participantes: res.data });
     console.log(res.data);
@@ -39,8 +70,6 @@ class RecordTable extends Component {
     selectAllRowsItemText: "Todos",
   };
 
-  //const URLFile = row => <a href={() => false}>{row.ansiedadFileLink}</a>
-
   columnas = [
     {
       name: "Nombre del Participante", //Texto de la columna
@@ -48,12 +77,6 @@ class RecordTable extends Component {
         `${row.apellidoParticipante} ${row.nombresParticipante}`, //Identificador de la columna
       sortable: true, //Ordenable?
     },
-    // {
-    //   name: "Número de WhatsApp: ", //Texto de la columna
-    //   selector: row => row.WaNumber, //Identificador de la columna
-    //   sortable: true, //Ordenable?
-    //   //grow: '2',
-    // },
     {
       name: "Fecha de Aplicación", //Texto de la columna
       // selector: row => format(row.updatedAt), //Identificador de la columna
@@ -78,6 +101,12 @@ class RecordTable extends Component {
       // selector: row => row.ansiedadFileLink, //Identificador de la columna
       // cell: row => <a href = {row.ansiedadFileLink}/>,
       cell: (row) => <URLFile {...row} />,
+      sortable: true, //Ordenable?
+    },
+    {
+      name: "Contactado", //Texto de la columna
+      // selector: row => row.ansiedadFileLink, //Identificador de la columna
+      cell: (row) => <StandaloneToggleButton {...row} />,
       sortable: true, //Ordenable?
     },
   ];
