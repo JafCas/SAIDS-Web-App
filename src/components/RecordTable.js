@@ -20,11 +20,11 @@ const URLFile = (row) => (
   </Link>
 );
 
-// const WhatsAppMeFile = (row) => (
-//   <Link>
-//   {row.}
-//   </Link>
-// );
+const WhatsAppMeFile = (row) => (
+  <Link href={`https://wa.me/${row.WaNumber}`}>
+  <ToggleButton aria-label="bold" size="small">{row.WaNumber}</ToggleButton>
+  </Link>
+);
 
 const StandaloneToggleButton = (row) => {
   const [selected, setSelected] = useState(!row.checadoPorEspecialista);
@@ -34,6 +34,7 @@ const StandaloneToggleButton = (row) => {
     <ToggleButton
       value="check"
       selected={!selected}
+      size="small"
       onChange={async () => {
         setSelected(!selected);
         console.log("apretao", selected);
@@ -79,6 +80,7 @@ class RecordTable extends Component {
   columnas = [
     {
       name: "Nombre del Participante", //Texto de la columna
+      fontSize: '25px',
       selector: (row) =>
         `${row.apellidoParticipante} ${row.nombresParticipante}`, //Identificador de la columna
       sortable: true, //Ordenable?
@@ -110,12 +112,12 @@ class RecordTable extends Component {
       sortable: true, //Ordenable?
     },
     {
-      name: "Numero de WhatsApp", //Texto de la columna
+      name: "Contacto de WhatsApp", //Texto de la columna
       // selector: row => row.ansiedadFileLink, //Identificador de la columna
-      cell: (row) => (
-        <a href={`https://wa.me/${row.WaNumber}`}>{row.WaNumber}</a>
-      ),
-      // cell: (row) => <URLFile {...row} />,
+      // cell: (row) => (
+      //   <a href={`https://wa.me/${row.WaNumber}`}>{row.WaNumber}</a>
+      // ),
+      cell: (row) => <WhatsAppMeFile {...row} />,
       sortable: true, //Ordenable?
     },
     {
