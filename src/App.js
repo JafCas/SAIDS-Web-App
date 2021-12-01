@@ -18,6 +18,7 @@ import CreateRecord from "./components/CreateRecord";
 import RecordTable from "./components/RecordTable"
 
 import { useAuth0 } from "@auth0/auth0-react";
+import ProtectedRoute from "./auth/protected-route";
 //import { Button } from "./components/layout/buttons/Button";
 //import User from "./pages/User";
 
@@ -30,11 +31,11 @@ function App() {
         <Route path="/" exact>
           <Inicio />
         </Route>
-        <Route path="/reportes">
+        <ProtectedRoute path="/reportes" component={RecordTable} />
           {/*<RecordList />*/}
           {/*<Reportes />*/}
-          <RecordTable />
-        </Route>
+          {/*<RecordTable />*/}
+        {/*</Route>*/}
         <Route path="/reportes/:id">
           <Reporte />
         </Route>
