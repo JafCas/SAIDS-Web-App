@@ -20,6 +20,12 @@ const URLFile = (row) => (
   </Link>
 );
 
+// const WhatsAppMeFile = (row) => (
+//   <Link>
+//   {row.}
+//   </Link>
+// );
+
 const StandaloneToggleButton = (row) => {
   const [selected, setSelected] = useState(!row.checadoPorEspecialista);
   console.log("inicial", selected);
@@ -38,7 +44,7 @@ const StandaloneToggleButton = (row) => {
           "http://localhost:4000/api/participantes/" + row._id,
           updateChecado
         );
-        
+
         console.log("subido", selected);
       }}
     >
@@ -101,6 +107,15 @@ class RecordTable extends Component {
       // selector: row => row.ansiedadFileLink, //Identificador de la columna
       // cell: row => <a href = {row.ansiedadFileLink}/>,
       cell: (row) => <URLFile {...row} />,
+      sortable: true, //Ordenable?
+    },
+    {
+      name: "Numero de WhatsApp", //Texto de la columna
+      // selector: row => row.ansiedadFileLink, //Identificador de la columna
+      cell: (row) => (
+        <a href={`https://wa.me/${row.WaNumber}`}>{row.WaNumber}</a>
+      ),
+      // cell: (row) => <URLFile {...row} />,
       sortable: true, //Ordenable?
     },
     {
