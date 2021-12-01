@@ -14,7 +14,7 @@ import Reporte from "./pages/ReporteI";
 
 import CreateUser from "./components/CreateUser";
 import CreateRecord from "./components/CreateRecord";
-import RecordList from "./components/RecordList"
+//import RecordList from "./components/RecordList"
 import RecordTable from "./components/RecordTable"
 
 import { useAuth0 } from "@auth0/auth0-react";
