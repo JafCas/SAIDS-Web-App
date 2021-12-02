@@ -41,7 +41,7 @@ const StandaloneToggleButton = (row) => {
         };
         await axios.put(
           // "http://localhost:4000/api/participantes/" + row._id,
-          "https://saids-backend.herokuapp.com/api/participantes" + row._id,
+          "https://saids-backend.herokuapp.com/api/participantes/" + row._id,
           updateChecado
         );
       }}
