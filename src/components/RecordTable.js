@@ -21,15 +21,13 @@ const URLFile = (row) => (
 );
 
 const WhatsAppMeFile = (row) => (
-  <Link href={`https://wa.me/${row.WaNumber}`}>
+  <Link onClick={() => window.open(`https://wa.me/${row.WaNumber}`, "_blank")}>
   <ToggleButton aria-label="bold" size="small">{row.WaNumber}</ToggleButton>
   </Link>
 );
 
 const StandaloneToggleButton = (row) => {
   const [selected, setSelected] = useState(!row.checadoPorEspecialista);
-  console.log("inicial", selected);
-
   return (
     <ToggleButton
       value="check"
@@ -43,10 +41,9 @@ const StandaloneToggleButton = (row) => {
         };
         await axios.put(
           "http://localhost:4000/api/participantes/" + row._id,
+          // "https://3c01-189-213-93-101.ngrok.io/api/participantes/" + row._id,
           updateChecado
         );
-
-        console.log("subido", selected);
       }}
     >
       {selected === false ? <CheckIcon /> : <ClearIcon />}
@@ -61,6 +58,7 @@ class RecordTable extends Component {
   };
 
   async getRecords() {
+    // const res = await axios.get("https://3c01-189-213-93-101.ngrok.io/api/participantes");
     const res = await axios.get("http://localhost:4000/api/participantes");
     this.setState({ participantes: res.data });
     console.log(res.data);
@@ -83,25 +81,25 @@ class RecordTable extends Component {
       fontSize: '25px',
       selector: (row) =>
         `${row.apellidoParticipante} ${row.nombresParticipante}`, //Identificador de la columna
-      sortable: true, //Ordenable?
+      sortable: false, //Ordenable?
     },
     {
       name: "Fecha de Aplicación", //Texto de la columna
       // selector: row => format(row.updatedAt), //Identificador de la columna
       selector: (row) => row.fechaParticipacionOnly, //Identificador de la columna
-      sortable: true, //Ordenable?,
+      sortable: false, //Ordenable?,
       //alignment: "center",
     },
     {
       name: "Puntuación C. de Ansiedad: ", //Texto de la columna
       selector: (row) => row.puntuacionTotalBAI, //Identificador de la columna
-      sortable: true, //Ordenable?
+      sortable: false, //Ordenable?
       //grow: '2',
     },
     {
       name: "Puntuación C. de Depresión: ", //Texto de la columna
       selector: (row) => row.puntuacionTotalPHQ, //Identificador de la columna
-      sortable: true, //Ordenable?
+      sortable: false, //Ordenable?
       //grow: '2',
     },
     {
@@ -109,22 +107,22 @@ class RecordTable extends Component {
       // selector: row => row.ansiedadFileLink, //Identificador de la columna
       // cell: row => <a href = {row.ansiedadFileLink}/>,
       cell: (row) => <URLFile {...row} />,
-      sortable: true, //Ordenable?
+      sortable: false, //Ordenable?
     },
     {
       name: "Contacto de WhatsApp", //Texto de la columna
-      // selector: row => row.ansiedadFileLink, //Identificador de la columna
+       selector: row => row.WaNumber, //Identificador de la columna
       // cell: (row) => (
       //   <a href={`https://wa.me/${row.WaNumber}`}>{row.WaNumber}</a>
       // ),
       cell: (row) => <WhatsAppMeFile {...row} />,
-      sortable: true, //Ordenable?
+      sortable: false, //Ordenable?
     },
     {
       name: "Contactado", //Texto de la columna
-      // selector: row => row.ansiedadFileLink, //Identificador de la columna
+      // selector: row => row.checadoBinary, //Identificador de la columna
       cell: (row) => <StandaloneToggleButton {...row} />,
-      sortable: true, //Ordenable?
+      sortable: false, //Ordenable?
     },
   ];
 
@@ -135,7 +133,7 @@ class RecordTable extends Component {
           columns={this.columnas}
           data={this.state.participantes}
           title="Reportes almacenados"
-          defaultSortFieldId={1}
+          defaultSortFieldId={2}
           pagination
           paginationComponentOptions={this.pagOptions}
           fixedHeader //Hacer fijo el encabezado
