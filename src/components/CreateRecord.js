@@ -15,7 +15,8 @@ class CreateRecord extends Component {
   };
 
   async componentDidMount() {
-    const res = await axios.get("http://localhost:4000/api/users");
+    // const res = await axios.get("http://localhost:4000/api/users");
+    const res = await axios.get(`${process.env.ACCESS_URI}/api/users`);
     if (res.data.length > 0) {
       this.setState({
         users: res.data.map((user) => user.username),
@@ -48,7 +49,8 @@ class CreateRecord extends Component {
         author: this.state.userSelected,
       };
       await axios.put(
-        "http://localhost:4000/api/records/" + this.state._id,
+        `${process.env.ACCESS_URI}/api/records/${this.state._id}`,
+        //"http://localhost:4000/api/records/" + this.state._id,
         updateNote
       );
     } else {
@@ -58,7 +60,7 @@ class CreateRecord extends Component {
         date: this.state.date,
         author: this.state.userSelected,
       };
-      await axios.post("http://localhost:4000/api/records/", newNote);
+      // await axios.post("http://localhost:4000/api/records/", newNote);
     }
     window.location.href = "/";
   };

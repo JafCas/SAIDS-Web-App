@@ -13,8 +13,8 @@ class CreateUser extends Component {
   }
 
   getUsers = async () => {
-    const res = await axios.get("http://localhost:4000/api/users");
-    this.setState({ users: res.data });
+    //const res = await axios.get("http://localhost:4000/api/users");
+    //this.setState({ users: res.data });
   };
 
   onChangeUserName = (e) => {
@@ -25,16 +25,16 @@ class CreateUser extends Component {
 
   onSubmit = async (e) => { //e es de event
     e.preventDefault(); //previene que se realice el refresh por default
-    await axios.post("http://localhost:4000/api/users", {
-      username: this.state.username,
-    });
-    this.setState({ username: "" });
-    this.getUsers();
+    // await axios.post("http://localhost:4000/api/users", {
+    //   username: this.state.username,
+    // });
+    // this.setState({ username: "" });
+    // this.getUsers();
   };
 
   deleteUser = async (id) => {
-    await axios.delete("http://localhost:4000/api/users/" + id);
-    this.getUsers();
+    // await axios.delete("http://localhost:4000/api/users/" + id);
+    // this.getUsers();
   };
 
   render() {

@@ -9,8 +9,8 @@ class RecordList extends Component {
   };
 
   async getNotes() {
-    const res = await axios.get("http://localhost:4000/api/Records");
-    this.setState({ notes: res.data });
+    // const res = await axios.get("http://localhost:4000/api/Records");
+    // this.setState({ notes: res.data });
     //console.log(res.data);
   }
 
@@ -19,8 +19,8 @@ class RecordList extends Component {
   }
 
   deleteNote = async (id) => {
-    await axios.delete("http://localhost:4000/api/Records/" + id);
-    this.getNotes();
+    // await axios.delete("http://localhost:4000/api/Records/" + id);
+    // this.getNotes();
   };
 
   render() {
