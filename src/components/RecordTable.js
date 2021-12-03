@@ -42,7 +42,7 @@ const StandaloneToggleButton = (row) => {
         await axios.put(
           // "http://localhost:4000/api/participantes/" + row._id,
           // "https://saids-backend.herokuapp.com/api/participantes/" + row._id,
-          "https://1631-189-213-93-101.ngrok.io/api/participantes/" + row._id,
+          "https://1815-200-68-159-119.ngrok.io/api/participantes/" + row._id,
           updateChecado
         );
       }}
@@ -61,13 +61,14 @@ class RecordTable extends Component {
   async getRecords() {
     // const res = await axios.get(process.env.ACCESS_URI);
     // const res = await axios.get("https://saids-backend.herokuapp.com/api/participantes");
-    const res = await axios.get("https://1631-189-213-93-101.ngrok.io/api/participantes");
+    const res = await axios.get("https://1815-200-68-159-119.ngrok.io/api/participantes");
     this.setState({ participantes: res.data });
     console.log(res.data);
   }
 
   async componentDidMount() {
     this.getRecords();
+    console.log("uri: ", process.env.ACCESS_URI);
   }
 
   pagOptions = {

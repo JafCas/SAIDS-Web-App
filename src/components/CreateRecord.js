@@ -54,12 +54,12 @@ class CreateRecord extends Component {
         updateNote
       );
     } else {
-      const newNote = {
-        title: this.state.title,
-        content: this.state.content,
-        date: this.state.date,
-        author: this.state.userSelected,
-      };
+      // const newNote = {
+      //   title: this.state.title,
+      //   content: this.state.content,
+      //   date: this.state.date,
+      //   author: this.state.userSelected,
+      // };
       // await axios.post("http://localhost:4000/api/records/", newNote);
     }
     window.location.href = "/";
