@@ -40,9 +40,9 @@ const StandaloneToggleButton = (row) => {
           checadoPorEspecialista: selected,
         };
         await axios.put(
-          "http://localhost:4000/api/participantes/" + row._id,
-          // "https://saids-backend.herokuapp.com/api/participantes/" + row._id,
-          // "https://1815-200-68-159-119.ngrok.io/api/participantes/" + row._id,
+          // "http://localhost:4000/api/participantes/" + row._id,
+          "https://d10b-189-213-93-101.ngrok.io/api/participantes/" + row._id,
+          // "https://saids-upiita.com/api/participantes/" + row._id,
           updateChecado
         );
       }}
@@ -59,11 +59,10 @@ class RecordTable extends Component {
   };
 
   async getRecords() {
-    const res = await axios.get("http://localhost:4000/api/participantes/");
-    // const res = await axios.get("https://saids-backend.herokuapp.com/api/participantes");
-    // const res = await axios.get("https://1815-200-68-159-119.ngrok.io/api/participantes");
+    // const res = await axios.get("http://localhost:4000/api/participantes/");
+    const res = await axios.get("https://d10b-189-213-93-101.ngrok.io/api/participantes");
+    // const res = await axios.get("https://saids-upiita.com/api/participantes/");
     this.setState({ participantes: res.data });
-    console.log(res.data);
   }
 
   async componentDidMount() {
@@ -137,6 +136,7 @@ class RecordTable extends Component {
           data={this.state.participantes}
           title="Reportes almacenados"
           defaultSortFieldId={2}
+          defaultSortAsc={false}
           pagination
           paginationComponentOptions={this.pagOptions}
           fixedHeader //Hacer fijo el encabezado
