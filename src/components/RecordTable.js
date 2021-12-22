@@ -40,8 +40,8 @@ const StandaloneToggleButton = (row) => {
           checadoPorEspecialista: selected,
         };
         await axios.put(
-          // "http://localhost:4000/api/participantes/" + row._id,
-          "https://d10b-189-213-93-101.ngrok.io/api/participantes/" + row._id,
+          "http://localhost:4000/api/participantes/" + row._id,
+          // "https://d10b-189-213-93-101.ngrok.io/api/participantes/" + row._id,
           // "https://saids-upiita.com/api/participantes/" + row._id,
           updateChecado
         );
@@ -59,8 +59,8 @@ class RecordTable extends Component {
   };
 
   async getRecords() {
-    // const res = await axios.get("http://localhost:4000/api/participantes/");
-    const res = await axios.get("https://d10b-189-213-93-101.ngrok.io/api/participantes");
+    const res = await axios.get("http://localhost:4000/api/participantes/");
+    // const res = await axios.get("https://d10b-189-213-93-101.ngrok.io/api/participantes");
     // const res = await axios.get("https://saids-upiita.com/api/participantes/");
     this.setState({ participantes: res.data });
   }
